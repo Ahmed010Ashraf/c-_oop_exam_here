@@ -202,7 +202,7 @@ namespace ConsoleApp1
                 {
                     exam.extype = 2;
                 }
-                
+
                 int time;
                 int numofqustions;
                 bool f;
@@ -214,15 +214,22 @@ namespace ConsoleApp1
                     Console.WriteLine("enter correct number of qustions");
                     f = int.TryParse(Console.ReadLine(), out numofqustions);
                 } while (!f);
-                if(exam != null)
+                
+                if (exam != null)
                 {
                     exam.time = time;
                     exam.numOfQustions = numofqustions;
                     exam.q = new Qustion[numofqustions];
                 }
-                
+
+                if (exam != null)
+                {
+                    exam.q = new Qustion[numofqustions];
+                }
+
                 for (int i = 0; i < numofqustions; i++)
                 {
+                    exam.q[i] = new Qustion();
                     Console.WriteLine("enter the qustion : ");
                     if (exam?.q?[i] != null)
                     {
@@ -236,8 +243,15 @@ namespace ConsoleApp1
                         tflag = int.TryParse(Console.ReadLine(), out numofanswers);
                     } while (!tflag);
 
+                    if (exam?.q?[i] != null)
+                    {
+                        exam.q[i].answers = new Answers[numofanswers];
+                    }
+
                     for (int j = 0; j < numofanswers; j++)
                     {
+                        exam.q[i].answers[j] = new Answers();
+
                         if (exam?.q?[i].answers?[j] != null)
                         {
                             exam.q[i].answers[j].ans = Console.ReadLine();
@@ -264,6 +278,14 @@ namespace ConsoleApp1
                     {
                         aflag = int.TryParse(Console.ReadLine(), out rightanswer);
                     } while (!aflag);
+                    if (exam?.q?[i] != null)
+                    {
+                        exam.q[i].rightanswerid = rightanswer;
+                    }
+
+
+
+
                 }
             }
         }
